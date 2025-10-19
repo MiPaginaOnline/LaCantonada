@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cantonada - Bar Restaurante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables y reset */
+        :root {
+            --primary-color: #c41e3a;
+            --secondary-color: #f5a623;
+            --dark-color: #222;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --mustard-color: #FFDB58;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: white;
+        }
+
+        /* Header y navegación */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fuera.PNG') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* Sobre Nosotros */
+        .about {
+            background-color: var(--mustard-color);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Menú */
+        .menu-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .menu-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .category {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-header:hover {
+            background-color: #a0182e;
+        }
+
+        .category-header h3 {
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .category-icon {
+            transition: var(--transition);
+        }
+
+        .category-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .category-content.open {
+            max-height: 2000px;
+        }
+
+        .menu-items {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px dashed #eee;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            float: right;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            clear: both;
+        }
+
+        /* Ubicación */
+        .location {
+            background-color: var(--mustard-color);
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Horario */
+        .hours-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .day-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .day-row:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 500;
+        }
+
+        .time {
+            color: var(--primary-color);
+        }
+
+        .closed {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        /* Pedidos Online */
+        .online-orders {
+            background-color: var(--mustard-color);
+        }
+
+        .orders-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .orders-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .glovo-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFC244;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .glovo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background-color: #FFB82E;
+        }
+
+        .glovo-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Reservas */
+        .reservations {
+            background-color: var(--mustard-color);
+        }
+
+        .reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #a0182e;
+            transform: translateY(-2px);
+        }
+
+        /* Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contacto */
+        .contact {
+            background-color: var(--mustard-color);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Redes Sociales */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Botón de llamada flotante */
+        .floating-call {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .floating-call:hover {
+            background-color: #a0182e;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: var(--transition);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .gallery-item {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">La Cantonada</a>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre">Sobre Nosotros</a></li>
+                    <li><a href="#menu">Carta</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#horario">Horario</a></li>
+                    <li><a href="#pedidos">Pedidos Online</a></li>
+                    <li><a href="#reservas">Reservas</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>La Cantonada</h1>
+            <p>Un espacio acogedor donde disfrutar de la mejor gastronomía y ambiente en el corazón de Tarragona</p>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre La Cantonada</h2>
+            </div>
+            <div class="about-content fade-in">
+                <p>La Cantonada es un bar restaurante con más de 15 años de experiencia, situado en el barrio de Torreforta, Tarragona. Nos caracterizamos por ofrecer platos tradicionales con un toque moderno, utilizando siempre productos frescos y de calidad.</p>
+                <p>Nuestro equipo de cocina, dirigido por el chef Juan Martínez, crea experiencias culinarias únicas que deleitan a nuestros clientes. Además, contamos con una amplia selección de vinos y cócteles para acompañar tus comidas.</p>
+                <p>En La Cantonada no solo servimos comida, creamos momentos especiales para que disfrutes con familiares y amigos en un ambiente cálido y acogedor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra Carta</h2>
+            </div>
+            <div class="menu-container">
+                <div class="menu-categories">
+                    <!-- Tapas -->
+                    <div class="category">
+                        <div class="category-header">
+                            <h3>Tapas</h3>
+                            <i class="fas fa-chevron-down category-icon"></i>
+                        </div>
+                        <div class="category-content">
+                            <div class="menu-items">
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Chipirones Fritos</div>
+                                    <div class="item-price">12,50 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Chipirones A La Plancha</div>
+                                    <div class="item-price">12,50 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Calamares A La Andaluza (12 Uds.)</div>
+                                    <div class="item-price">11,50 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Sepia Troseada</div>
+                                    <div class="item-price">11,00 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Calamares A La Romana (12 uds.)</div>
+                                    <div class="item-price">9,50 €</div>
+                                    <div class="item-description">Calamares rebozados y fritos</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Rabas</div>
+                                    <div class="item-price">9,50 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Croquetas Tabla De Jamón Ibérico (8 Uds.)</div>
+                                    <div class="item-price">9,50 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Boquerones Fritos</div>
+                                    <div class="item-price">9,00 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Tiras De Pollo (15 Uds.)</div>
+                                    <div class="item-price">9,00 €</div>
+                                    <div class="item-description">Pechuga de pollo cortada en tiras, aderezada con especies y fritas</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Pinchos Morunos</div>
+                                    <div class="item-price">8,50 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Bravas</div>
+                                    <div class="item-price">7,50 €</div>
+                                    <div class="item-description">Patatas cortadas en dados, fritas y aderezadas con salsa brava</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Alitas De Pollo (8 Uds.)</div>
+                                    <div class="item-price">7,50 €</div>
+                                    <div class="item-description">Alitas fritas</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Tapa De Nuggets De Pollo (8 Uds.)</div>
+                                    <div class="item-price">5,90 €</div>
+                                    <div class="item-description">Trozos de pechuga de pollo, empanizados y fritos en aceite</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ensaladas -->
+                    <div class="category">
+                        <div class="category-header">
+                            <h3>Ensaladas</h3>
+                            <i class="fas fa-chevron-down category-icon"></i>
+                        </div>
+                        <div class="category-content">
+                            <div class="menu-items">
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Ensalada De Queso De Cabra</div>
+                                    <div class="item-price">8,50 €</div>
+                                    <div class="item-description">Mezcla fresca de hojas verdes, queso de cabra, aderezada con vinagreta</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Ensalada Tropical</div>
+                                    <div class="item-price">7,50 €</div>
+                                    <div class="item-description">Lechuga, tomate, pollo, gamba, olivas negras, salsa rosa</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Ensalada De Atún</div>
+                                    <div class="item-price">6,90 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Ensalada De Verde</div>
+                                    <div class="item-price">5,90 €</div>
+                                    <div class="item-description">Lechuga, tomate, zanahoria, remolacha, cebolla y maíz</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizzas Medianas -->
+                    <div class="category">
+                        <div class="category-header">
+                            <h3>Pizzas Medianas</h3>
+                            <i class="fas fa-chevron-down category-icon"></i>
+                        </div>
+                        <div class="category-content">
+                            <div class="menu-items">
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Jamón (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Jamón dulce con queso</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Carbonara (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Crema fresca, bacon, champiñon y cebolla</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza 4 Estaciones (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Jamón, alcachofas, champiñón, pimiento verde</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza 4 Quesos (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Roquefort, mozzarella, parmesano, queso</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Tropica (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Jamón dulce y piña</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Barbacoa (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Carne picada y salsa barbacoa</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Rambla (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Jamón dulce, bacon y champiñones</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Mixta (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                    <div class="item-description">Bacon, jamón dulce, olivas N y frankfurt</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Vegetariana (Mediana)</div>
+                                    <div class="item-price">9,90 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Margarita (Mediana)</div>
+                                    <div class="item-price">8,90 €</div>
+                                    <div class="item-description">Salsa de tomate con queso</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizzas Familiares -->
+                    <div class="category">
+                        <div class="category-header">
+                            <h3>Pizzas Familiares</h3>
+                            <i class="fas fa-chevron-down category-icon"></i>
+                        </div>
+                        <div class="category-content">
+                            <div class="menu-items">
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Jamón (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Jamón dulce con queso</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Carbonara (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Crema fresca, bacon, champiñon y cebolla</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza 4 Estaciones (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Jamón, alcachofas, champiñón, pimiento verde</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza 4 Quesos (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Roquefort, mozzarella, parmesano, queso</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Tropica (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Jamón dulce y piña</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Barbacoa (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Carne picada y salsa barbacoa</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Rambla (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Jamón dulce, bacon y champiñones</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza La Cantonada (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Pollo, maíz, olivas N, cebolla y pimiento verde y rojo</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Mixta (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                    <div class="item-description">Bacon, jamón dulce, olivas N y frankfurt</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Vegetariana (Familiar)</div>
+                                    <div class="item-price">15,90 €</div>
+                                </div>
+                                <div class="menu-item fade-in">
+                                    <div class="item-name">Pizza Margarita (Familiar)</div>
+                                    <div class="item-price">14,90 €</div>
+                                    <div class="item-description">Salsa de tomate con queso</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ubicación</h2>
+            </div>
+            <div class="map-container fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.113370557392!2d1.223406315424238!3d41.349889779267645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sRbla.%20de%20Ponent%2C%208%2C%20local%204%2C%2043006%20Tarragona!5e0!3m2!1ses!2ses!4v1622549402999!5m2!1ses!2ses" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horario -->
+    <section id="horario" class="hours">
+        <div class="container">
+            <div class="section-title">
+                <h2>Horario</h2>
+            </div>
+            <div class="hours-container fade-in">
+                <div class="day-row">
+                    <span class="day">Lunes</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+                <div class="day-row">
+                    <span class="day">Martes</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+                <div class="day-row">
+                    <span class="day">Miércoles</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+                <div class="day-row">
+                    <span class="day">Jueves</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+                <div class="day-row">
+                    <span class="day">Viernes</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+                <div class="day-row">
+                    <span class="day">Sábado</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+                <div class="day-row">
+                    <span class="day">Domingo</span>
+                    <span class="time">9:00 - 24:00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pedidos Online -->
+    <section id="pedidos" class="online-orders">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pedidos Online</h2>
+            </div>
+            <div class="orders-content fade-in">
+                <p>¿No puedes venir al restaurante? ¡Pide a través de Glovo y disfruta de nuestros platos en casa!</p>
+                <a href="https://glovoapp.com/es/es/tarragona/bar-pizzaria-cantonada-tarragona/?utm_source=google&utm_medium=organic&utm_campaign=google_reserve_place_order_action" class="glovo-btn" target="_blank">
+                    <i class="fas fa-shopping-bag"></i> Pedir en Glovo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservas -->
+    <section id="reservas" class="reservations">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reservas</h2>
+            </div>
+            <div class="reservation-form fade-in">
+                <form id="reservationForm">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Hora</label>
+                        <input type="time" id="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Número de comensales</label>
+                        <input type="number" id="guests" class="form-control" min="1" max="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje adicional (opcional)</label>
+                        <textarea id="message" class="form-control" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Hacer Reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galería</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="comida 1.PNG" alt="Interior del restaurante">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="comida 2.PNG" alt="Plato principal">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="comida 3.PNG" alt="Plato de pasta">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="comida.PNG" alt="Plato de carne">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="fuera 1.PNG" alt="Postre">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="fuera.PNG" alt="Chef preparando plato">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p><a href="tel:877058782">877 05 87 82</a></p>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Dirección</h3>
+                    <p>Rbla. de Ponent, 8, local 4<br>43006 Tarragona</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section class="social">
+        <div class="container">
+            <div class="section-title">
+                <h2>Síguenos en Redes Sociales</h2>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/lacantonada_torreforta/" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/p/La-cantonada-100063661325644/?locale=es_ES" class="social-link" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">La Cantonada</a>
+                <p>Bar Restaurante en el corazón de Tarragona</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 La Cantonada. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de llamada flotante -->
+    <a href="tel:877058782" class="floating-call">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <script>
+        // Menú hamburguesa
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace (en móviles)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Efecto de scroll en el header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Animación de aparición al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', fadeInOnScroll);
+        // Ejecutar una vez al cargar la página
+        fadeInOnScroll();
+
+        // Manejo del formulario de reservas
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí normalmente enviarías los datos a un servidor
+            // Por ahora, solo mostraremos una alerta
+            alert('¡Gracias por tu reserva! Te contactaremos pronto para confirmarla.');
+            this.reset();
+        });
+
+        // Menú desplegable para categorías de carta
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.category-icon');
+                
+                content.classList.toggle('open');
+                icon.classList.toggle('rotate');
+            });
+        });
+    </script>
+</body>
+</html>

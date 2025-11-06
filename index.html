@@ -13,30 +13,27 @@
             --dark-color: #222;
             --light-color: #f8f9fa;
             --text-color: #333;
-            --mustard-color: #FFDB58;
+            --mustard-color: #FFDB58; /* Mantenido por si se necesita referenciar */
+            --elegant-bg: #f4f4f4; /* Nuevo color de fondo elegante */
             --transition: all 0.3s ease;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             --radius: 8px;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
             background-color: white;
         }
-
         /* Header y navegación */
         header {
             position: fixed;
@@ -49,21 +46,18 @@
             background-color: rgba(255, 255, 255, 0.85);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
         }
-
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -72,21 +66,17 @@
             display: flex;
             align-items: center;
         }
-
         .logo i {
             margin-right: 10px;
             font-size: 1.5rem;
         }
-
         .nav-links {
             display: flex;
             list-style: none;
         }
-
         .nav-links li {
             margin-left: 30px;
         }
-
         .nav-links a {
             text-decoration: none;
             color: var(--dark-color);
@@ -94,11 +84,9 @@
             transition: var(--transition);
             position: relative;
         }
-
         .nav-links a:hover {
             color: var(--primary-color);
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -109,18 +97,15 @@
             background-color: var(--primary-color);
             transition: var(--transition);
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
-
         .hamburger {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
             color: var(--dark-color);
         }
-
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -133,26 +118,22 @@
             padding: 0 20px;
             position: relative;
         }
-
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             animation: fadeInDown 1s ease;
         }
-
         .hero-content p {
             font-size: 1.5rem;
             max-width: 700px;
             margin: 0 auto;
             animation: fadeInUp 1s ease;
         }
-
         .hero-cta {
             margin-top: 30px;
             animation: fadeInUp 1.2s ease;
         }
-
         .btn-hero {
             display: inline-block;
             background-color: var(--primary-color);
@@ -165,31 +146,26 @@
             margin: 0 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
         .btn-hero:hover {
             background-color: #a0182e;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-
         /* Secciones generales */
         section {
             padding: 80px 0;
         }
-
         .section-title {
             text-align: center;
             margin-bottom: 50px;
             position: relative;
         }
-
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary-color);
             display: inline-block;
             position: relative;
         }
-
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -200,41 +176,52 @@
             height: 3px;
             background-color: var(--secondary-color);
         }
-
         /* Sobre Nosotros */
         .about {
-            background-color: var(--mustard-color);
+            background-color: var(--elegant-bg); /* Cambiado a gris elegante */
         }
-
         .about-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
             font-size: 1.1rem;
         }
-
-        /* Menú - Carrusel */
-        .menu-carousel {
+        /* Menú */
+        .menu {
+            background-color: white; /* Fondo blanco */
+        }
+        .menu-container {
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
+        }
+        .menu-carousel-container {
+            position: relative;
             overflow: hidden;
+            margin-bottom: 20px;
         }
-
-        .menu-categories {
+        .menu-carousel {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease-in-out;
         }
-
-        .category {
+        .menu-category-slide {
             min-width: 100%;
             background-color: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            overflow: hidden;
-            padding: 0 15px;
+            padding: 20px;
         }
-
+        .menu-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .category {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
         .category-header {
             display: flex;
             justify-content: space-between;
@@ -244,200 +231,165 @@
             color: white;
             cursor: pointer;
             transition: var(--transition);
-            border-radius: var(--radius) var(--radius) 0 0;
         }
-
+        .category-header:hover {
+            background-color: #a0182e;
+        }
         .category-header h3 {
             font-size: 1.3rem;
             margin: 0;
         }
-
+        .category-icon {
+            transition: var(--transition);
+        }
+        .category-icon.rotate {
+            transform: rotate(180deg);
+        }
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .category-content.open {
+            max-height: 2000px;
+        }
         .menu-items {
-            padding: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
-
         .menu-item {
             padding: 15px;
             border-bottom: 1px dashed #eee;
             transition: var(--transition);
             position: relative;
         }
-
         .menu-item:hover {
             background-color: #f9f9f9;
             transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
         }
-
         .menu-item:last-child {
             border-bottom: none;
         }
-
         .item-name {
             font-weight: 500;
             font-size: 1.1rem;
             margin-bottom: 5px;
         }
-
         .item-price {
             color: var(--primary-color);
             font-weight: 600;
             font-size: 1.2rem;
             float: right;
         }
-
         .item-description {
             font-size: 0.9rem;
             color: #666;
             margin-top: 10px;
             clear: both;
         }
-
+        .carousel-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
         .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             background-color: var(--primary-color);
             color: white;
             border: none;
-            width: 50px;
-            height: 50px;
             border-radius: 50%;
+            width: 40px;
+            height: 40px;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: var(--transition);
-            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
-
         .carousel-btn:hover {
             background-color: #a0182e;
+            transform: scale(1.05);
         }
-
-        .carousel-btn.prev {
-            left: 10px;
+        .carousel-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
         }
-
-        .carousel-btn.next {
-            right: 10px;
-        }
-
         /* Ubicación */
         .location {
-            background-color: var(--mustard-color);
+            background-color: white; /* Fondo blanco */
         }
-
         .map-container {
             height: 400px;
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
         }
-
         .map-container iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-
-        /* Horario - Carrusel */
-        .hours-carousel {
+        /* Horario */
+        .hours {
+            background-color: var(--elegant-bg); /* Cambiado a gris elegante */
+        }
+        .hours-carousel-container {
             position: relative;
             max-width: 600px;
             margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .hours-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .hours-slide {
-            min-width: 100%;
             background-color: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 30px;
+            overflow: hidden;
         }
-
-        .day-row {
+        .hours-carousel {
             display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
+            transition: transform 0.3s ease-in-out;
         }
-
-        .day-row:last-child {
-            border-bottom: none;
+        .hours-day-slide {
+            min-width: 100%;
+            padding: 0 10px; /* Espacio lateral para centrar el contenido */
         }
-
-        .day {
-            font-weight: 500;
-        }
-
-        .time {
-            color: var(--primary-color);
-        }
-
-        .current-day {
-            background-color: rgba(196, 30, 58, 0.1);
-            border-radius: 4px;
-            padding: 5px 10px;
-        }
-
-        .hours-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 10;
+        .day-row-centered {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100%; /* Asegura que el contenido se centre verticalmente */
+            padding: 20px 0;
         }
-
-        .hours-btn:hover {
-            background-color: #a0182e;
+        .day-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
-
-        .hours-btn.prev {
-            left: -20px;
+        .day-hours {
+            font-size: 1.4rem;
+            color: var(--text-color);
         }
-
-        .hours-btn.next {
-            right: -20px;
+        .closed {
+            color: #e74c3c;
+            font-weight: 600;
         }
-
         /* Pedidos Online */
         .online-orders {
-            background-color: var(--mustard-color);
+            background-color: white; /* Fondo blanco */
         }
-
         .orders-content {
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
         }
-
         .orders-content p {
             margin-bottom: 30px;
             font-size: 1.1rem;
         }
-
         .glovo-btn {
             display: inline-flex;
             align-items: center;
@@ -452,23 +404,19 @@
             transition: var(--transition);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
         .glovo-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             background-color: #FFB82E;
         }
-
         .glovo-btn i {
             margin-right: 10px;
             font-size: 1.5rem;
         }
-
         /* Reservas */
         .reservations {
-            background-color: var(--mustard-color);
+            background-color: white; /* Fondo blanco */
         }
-
         .reservation-form {
             max-width: 600px;
             margin: 0 auto;
@@ -477,17 +425,14 @@
             box-shadow: var(--shadow);
             padding: 30px;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
         }
-
         .form-control {
             width: 100%;
             padding: 12px 15px;
@@ -496,24 +441,20 @@
             font-size: 1rem;
             transition: var(--transition);
         }
-
         .form-control:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.2);
         }
-
         .form-control.error {
             border-color: #e74c3c;
         }
-
         .error-message {
             color: #e74c3c;
             font-size: 0.85rem;
             margin-top: 5px;
             display: none;
         }
-
         .btn {
             display: inline-block;
             background-color: var(--primary-color);
@@ -528,52 +469,39 @@
             text-decoration: none;
             width: 100%;
         }
-
         .btn:hover {
             background-color: #a0182e;
             transform: translateY(-2px);
         }
-
-        /* Galería - Carrusel automático (UNA IMAGEN POR SLIDE) */
-        .gallery-carousel {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            height: 500px;
+        /* Galería */
+        .gallery {
+            background-color: var(--elegant-bg); /* Cambiado a gris elegante */
         }
-
         .gallery-container {
-            display: flex;
-            transition: transform 0.8s ease;
-            height: 100%;
+             overflow: hidden;
+             max-width: 1000px; /* Ajusta según necesites */
+             margin: 0 auto;
+             padding: 0 20px; /* Espacio lateral */
         }
-
-        .gallery-slide {
-            min-width: 100%;
-            height: 100%;
+        .gallery-carousel {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            scroll-behavior: smooth; /* Suaviza el desplazamiento automático */
+        }
+        .gallery-item-slide {
+            min-width: 100%; /* Cada slide ocupa el 100% del contenedor */
+            height: 400px; /* Altura fija para consistencia */
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
-        .gallery-item {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
+        .gallery-item-slide img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
-
         /* Modal de galería */
         .modal {
             display: none;
@@ -586,7 +514,6 @@
             background-color: rgba(0, 0, 0, 0.9);
             overflow: auto;
         }
-
         .modal-content {
             margin: auto;
             display: block;
@@ -594,7 +521,6 @@
             max-height: 90%;
             margin-top: 2%;
         }
-
         .close-modal {
             position: absolute;
             top: 15px;
@@ -605,23 +531,19 @@
             cursor: pointer;
             transition: var(--transition);
         }
-
         .close-modal:hover {
             color: var(--primary-color);
         }
-
         /* Contacto */
         .contact {
-            background-color: var(--mustard-color);
+            background-color: white; /* Fondo blanco */
         }
-
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-
         .contact-item {
             text-align: center;
             padding: 30px;
@@ -630,32 +552,26 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
-
         .contact-item:hover {
             transform: translateY(-5px);
         }
-
         .contact-icon {
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 15px;
         }
-
         .contact-item h3 {
             margin-bottom: 10px;
             color: var(--dark-color);
         }
-
         .contact-item a {
             color: var(--text-color);
             text-decoration: none;
             transition: var(--transition);
         }
-
         .contact-item a:hover {
             color: var(--primary-color);
         }
-
         /* Redes Sociales */
         .social-links {
             display: flex;
@@ -663,7 +579,6 @@
             gap: 20px;
             margin-top: 30px;
         }
-
         .social-link {
             display: flex;
             align-items: center;
@@ -677,12 +592,10 @@
             transition: var(--transition);
             text-decoration: none;
         }
-
         .social-link:hover {
             background-color: var(--dark-color);
             transform: translateY(-3px);
         }
-
         /* Botón de llamada flotante */
         .floating-call {
             position: fixed;
@@ -702,12 +615,10 @@
             transition: var(--transition);
             text-decoration: none;
         }
-
         .floating-call:hover {
             background-color: #a0182e;
             transform: scale(1.1);
         }
-
         /* Footer */
         footer {
             background-color: var(--dark-color);
@@ -715,11 +626,9 @@
             padding: 40px 0 20px;
             text-align: center;
         }
-
         .footer-content {
             margin-bottom: 30px;
         }
-
         .footer-logo {
             font-size: 2rem;
             font-weight: 700;
@@ -728,14 +637,12 @@
             display: inline-block;
             text-decoration: none;
         }
-
         .copyright {
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
             color: #aaa;
         }
-
         /* Animaciones */
         @keyframes fadeInDown {
             from {
@@ -747,7 +654,6 @@
                 transform: translateY(0);
             }
         }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -758,19 +664,15 @@
                 transform: translateY(0);
             }
         }
-
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
-
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Mensaje de confirmación */
         .confirmation-message {
             display: none;
             background-color: #2ecc71;
@@ -780,27 +682,19 @@
             margin-top: 20px;
             text-align: center;
         }
-
         /* Responsive */
         @media (max-width: 992px) {
             .hero-content h1 {
                 font-size: 3rem;
             }
-            
             .hero-content p {
                 font-size: 1.2rem;
             }
-            
-            .gallery-carousel {
-                height: 400px;
-            }
         }
-
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
             }
-
             .nav-links {
                 position: fixed;
                 top: 70px;
@@ -815,65 +709,50 @@
                 transition: var(--transition);
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
-
             .nav-links.active {
                 left: 0;
             }
-
             .nav-links li {
                 margin: 15px 0;
             }
-
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
             .hero-content p {
                 font-size: 1.1rem;
             }
-
             .section-title h2 {
                 font-size: 2rem;
             }
-
             section {
                 padding: 60px 0;
             }
-
             .menu-items {
                 grid-template-columns: 1fr;
             }
-
             .hero-cta {
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
             }
-
             .btn-hero {
                 margin: 0;
             }
-
-            .carousel-btn, .hours-btn {
-                display: none;
+            /* Ajustes para carrusel de menú en móvil */
+            .menu-item {
+                min-width: 280px; /* Ancho mínimo para evitar elementos demasiado estrechos */
             }
-
-            .gallery-carousel {
-                height: 300px;
-            }
+            /* Ajustes para carrusel de galería en móvil */
+             .gallery-item-slide {
+                 height: 250px; /* Ajustar altura en móvil */
+             }
         }
-
         @media (max-width: 576px) {
             .hero-content h1 {
                 font-size: 2rem;
             }
-            
             .hero-content p {
                 font-size: 1rem;
-            }
-            
-            .gallery-carousel {
-                height: 250px;
             }
         }
     </style>
@@ -903,7 +782,6 @@
             </nav>
         </div>
     </header>
-
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-content">
@@ -915,7 +793,6 @@
             </div>
         </div>
     </section>
-
     <!-- Sobre Nosotros -->
     <section id="sobre" class="about">
         <div class="container">
@@ -927,155 +804,182 @@
             </div>
         </div>
     </section>
-
     <!-- Menú -->
     <section id="menu" class="menu">
         <div class="container">
             <div class="section-title">
                 <h2>Nuestra Carta</h2>
             </div>
-            <div class="menu-carousel">
-                <button class="carousel-btn prev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="menu-categories">
-                    <!-- Tapas -->
-                    <div class="category">
-                        <div class="category-header">
-                            <h3>Tapas</h3>
+            <div class="menu-container">
+                <div class="menu-carousel-container">
+                    <div class="menu-carousel" id="menuCarousel">
+                        <!-- Slide 1: Tapas -->
+                        <div class="menu-category-slide fade-in">
+                            <div class="category">
+                                <div class="category-header">
+                                    <h3>Tapas</h3>
+                                    <i class="fas fa-chevron-down category-icon"></i>
+                                </div>
+                                <div class="category-content">
+                                    <div class="menu-items">
+                                        <div class="menu-item">
+                                            <div class="item-name">Tapa De Chipirones Fritos</div>
+                                            <div class="item-price">12,50 €</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Tapa De Calamares A La Andaluza (12 Uds.)</div>
+                                            <div class="item-price">11,50 €</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Tapa De Calamares A La Romana (12 uds.)</div>
+                                            <div class="item-price">9,50 €</div>
+                                            <div class="item-description">Calamares rebozados y fritos</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Tapa De Rabas</div>
+                                            <div class="item-price">9,50 €</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Tapa De Tiras De Pollo (15 Uds.)</div>
+                                            <div class="item-price">9,00 €</div>
+                                            <div class="item-description">Pechuga de pollo cortada en tiras, aderezada con especies y fritas</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Tapa De Bravas</div>
+                                            <div class="item-price">7,50 €</div>
+                                            <div class="item-description">Patatas cortadas en dados, fritas y aderezadas con salsa brava</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="menu-items">
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Tapa De Chipirones Fritos</div>
-                                <div class="item-price">12,50 €</div>
+                        <!-- Slide 2: Ensaladas -->
+                        <div class="menu-category-slide fade-in">
+                            <div class="category">
+                                <div class="category-header">
+                                    <h3>Ensaladas</h3>
+                                    <i class="fas fa-chevron-down category-icon"></i>
+                                </div>
+                                <div class="category-content">
+                                    <div class="menu-items">
+                                        <div class="menu-item">
+                                            <div class="item-name">Ensalada De Queso De Cabra</div>
+                                            <div class="item-price">8,50 €</div>
+                                            <div class="item-description">Mezcla fresca de hojas verdes, queso de cabra, aderezada con vinagreta</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Ensalada Tropical</div>
+                                            <div class="item-price">7,50 €</div>
+                                            <div class="item-description">Lechuga, tomate, pollo, gamba, olivas negras, salsa rosa</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Ensalada De Atún</div>
+                                            <div class="item-price">6,90 €</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Ensalada De Verde</div>
+                                            <div class="item-price">5,90 €</div>
+                                            <div class="item-description">Lechuga, tomate, zanahoria, remolacha, cebolla y maíz</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Tapa De Chipirones A La Plancha</div>
-                                <div class="item-price">12,50 €</div>
+                        </div>
+                        <!-- Slide 3: Pizzas Medianas -->
+                        <div class="menu-category-slide fade-in">
+                            <div class="category">
+                                <div class="category-header">
+                                    <h3>Pizzas Medianas</h3>
+                                    <i class="fas fa-chevron-down category-icon"></i>
+                                </div>
+                                <div class="category-content">
+                                    <div class="menu-items">
+                                        <div class="menu-item">
+                                            <div class="item-name">Pizza Jamón (Mediana)</div>
+                                            <div class="item-price">9,90 €</div>
+                                            <div class="item-description">Jamón dulce con queso</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Pizza Carbonara (Mediana)</div>
+                                            <div class="item-price">9,90 €</div>
+                                            <div class="item-description">Crema fresca, bacon, champiñon y cebolla</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Pizza 4 Estaciones (Mediana)</div>
+                                            <div class="item-price">9,90 €</div>
+                                            <div class="item-description">Jamón, alcachofas, champiñón, pimiento verde</div>
+                                        </div>
+                                         <div class="menu-item">
+                                            <div class="item-name">Pizza 4 Quesos (Mediana)</div>
+                                            <div class="item-price">9,90 €</div>
+                                            <div class="item-description">Roquefort, mozzarella, parmesano, queso</div>
+                                        </div>
+                                         <div class="menu-item">
+                                            <div class="item-name">Pizza Tropica (Mediana)</div>
+                                            <div class="item-price">9,90 €</div>
+                                            <div class="item-description">Jamón dulce y piña</div>
+                                        </div>
+                                         <div class="menu-item">
+                                            <div class="item-name">Pizza Barbacoa (Mediana)</div>
+                                            <div class="item-price">9,90 €</div>
+                                            <div class="item-description">Carne picada y salsa barbacoa</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Tapa De Calamares A La Andaluza (12 Uds.)</div>
-                                <div class="item-price">11,50 €</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Tapa De Sepia Troseada</div>
-                                <div class="item-price">11,00 €</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Tapa De Calamares A La Romana (12 uds.)</div>
-                                <div class="item-price">9,50 €</div>
-                                <div class="item-description">Calamares rebozados y fritos</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Tapa De Rabas</div>
-                                <div class="item-price">9,50 €</div>
+                        </div>
+                         <!-- Slide 4: Pizzas Familiares -->
+                        <div class="menu-category-slide fade-in">
+                            <div class="category">
+                                <div class="category-header">
+                                    <h3>Pizzas Familiares</h3>
+                                    <i class="fas fa-chevron-down category-icon"></i>
+                                </div>
+                                <div class="category-content">
+                                    <div class="menu-items">
+                                        <div class="menu-item">
+                                            <div class="item-name">Pizza Jamón (Familiar)</div>
+                                            <div class="item-price">15,90 €</div>
+                                            <div class="item-description">Jamón dulce con queso</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Pizza Carbonara (Familiar)</div>
+                                            <div class="item-price">15,90 €</div>
+                                            <div class="item-description">Crema fresca, bacon, champiñon y cebolla</div>
+                                        </div>
+                                        <div class="menu-item">
+                                            <div class="item-name">Pizza 4 Estaciones (Familiar)</div>
+                                            <div class="item-price">15,90 €</div>
+                                            <div class="item-description">Jamón, alcachofas, champiñón, pimiento verde</div>
+                                        </div>
+                                         <div class="menu-item">
+                                            <div class="item-name">Pizza 4 Quesos (Familiar)</div>
+                                            <div class="item-price">15,90 €</div>
+                                            <div class="item-description">Roquefort, mozzarella, parmesano, queso</div>
+                                        </div>
+                                         <div class="menu-item">
+                                            <div class="item-name">Pizza Tropica (Familiar)</div>
+                                            <div class="item-price">15,90 €</div>
+                                            <div class="item-description">Jamón dulce y piña</div>
+                                        </div>
+                                         <div class="menu-item">
+                                            <div class="item-name">Pizza Barbacoa (Familiar)</div>
+                                            <div class="item-price">15,90 €</div>
+                                            <div class="item-description">Carne picada y salsa barbacoa</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Ensaladas -->
-                    <div class="category">
-                        <div class="category-header">
-                            <h3>Ensaladas</h3>
-                        </div>
-                        <div class="menu-items">
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Ensalada De Queso De Cabra</div>
-                                <div class="item-price">8,50 €</div>
-                                <div class="item-description">Mezcla fresca de hojas verdes, queso de cabra, aderezada con vinagreta</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Ensalada Tropical</div>
-                                <div class="item-price">7,50 €</div>
-                                <div class="item-description">Lechuga, tomate, pollo, gamba, olivas negras, salsa rosa</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Ensalada De Atún</div>
-                                <div class="item-price">6,90 €</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Ensalada De Verde</div>
-                                <div class="item-price">5,90 €</div>
-                                <div class="item-description">Lechuga, tomate, zanahoria, remolacha, cebolla y maíz</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Pizzas Medianas -->
-                    <div class="category">
-                        <div class="category-header">
-                            <h3>Pizzas Medianas</h3>
-                        </div>
-                        <div class="menu-items">
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza Jamón (Mediana)</div>
-                                <div class="item-price">9,90 €</div>
-                                <div class="item-description">Jamón dulce con queso</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza Carbonara (Mediana)</div>
-                                <div class="item-price">9,90 €</div>
-                                <div class="item-description">Crema fresca, bacon, champiñon y cebolla</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza 4 Estaciones (Mediana)</div>
-                                <div class="item-price">9,90 €</div>
-                                <div class="item-description">Jamón, alcachofas, champiñón, pimiento verde</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza 4 Quesos (Mediana)</div>
-                                <div class="item-price">9,90 €</div>
-                                <div class="item-description">Roquefort, mozzarella, parmesano, queso</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza Tropica (Mediana)</div>
-                                <div class="item-price">9,90 €</div>
-                                <div class="item-description">Jamón dulce y piña</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Pizzas Familiares -->
-                    <div class="category">
-                        <div class="category-header">
-                            <h3>Pizzas Familiares</h3>
-                        </div>
-                        <div class="menu-items">
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza Jamón (Familiar)</div>
-                                <div class="item-price">15,90 €</div>
-                                <div class="item-description">Jamón dulce con queso</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza Carbonara (Familiar)</div>
-                                <div class="item-price">15,90 €</div>
-                                <div class="item-description">Crema fresca, bacon, champiñon y cebolla</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza 4 Estaciones (Familiar)</div>
-                                <div class="item-price">15,90 €</div>
-                                <div class="item-description">Jamón, alcachofas, champiñón, pimiento verde</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza 4 Quesos (Familiar)</div>
-                                <div class="item-price">15,90 €</div>
-                                <div class="item-description">Roquefort, mozzarella, parmesano, queso</div>
-                            </div>
-                            <div class="menu-item fade-in">
-                                <div class="item-name">Pizza Tropica (Familiar)</div>
-                                <div class="item-price">15,90 €</div>
-                                <div class="item-description">Jamón dulce y piña</div>
-                            </div>
-                        </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn prev-btn" id="menuPrevBtn" aria-label="Anterior categoría">&lt;</button>
+                        <button class="carousel-btn next-btn" id="menuNextBtn" aria-label="Siguiente categoría">&gt;</button>
                     </div>
                 </div>
-                <button class="carousel-btn next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
             </div>
         </div>
     </section>
-
     <!-- Ubicación -->
     <section id="ubicacion" class="location">
         <div class="container">
@@ -1087,27 +991,23 @@
             </div>
         </div>
     </section>
-
     <!-- Horario -->
     <section id="horario" class="hours">
         <div class="container">
             <div class="section-title">
                 <h2>Horario</h2>
             </div>
-            <div class="hours-carousel">
-                <button class="hours-btn prev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="hours-container">
-                    <!-- Los slides se generarán dinámicamente con JavaScript -->
+            <div class="hours-carousel-container">
+                <div class="hours-carousel" id="hoursCarousel">
+                    <!-- Días generados por JS -->
                 </div>
-                <button class="hours-btn next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev-btn" id="hoursPrevBtn" aria-label="Día anterior">&lt;</button>
+                    <button class="carousel-btn next-btn" id="hoursNextBtn" aria-label="Día siguiente">&gt;</button>
+                </div>
             </div>
         </div>
     </section>
-
     <!-- Pedidos Online -->
     <section id="pedidos" class="online-orders">
         <div class="container">
@@ -1122,7 +1022,6 @@
             </div>
         </div>
     </section>
-
     <!-- Reservas -->
     <section id="reservas" class="reservations">
         <div class="container">
@@ -1173,27 +1072,41 @@
             </div>
         </div>
     </section>
-
     <!-- Galería -->
     <section id="galeria" class="gallery">
         <div class="container">
             <div class="section-title">
                 <h2>Galería</h2>
             </div>
-            <div class="gallery-carousel">
-                <div class="gallery-container">
-                    <!-- Los slides se generarán dinámicamente con JavaScript -->
+            <div class="gallery-container">
+                <div class="gallery-carousel" id="galleryCarousel">
+                    <div class="gallery-item-slide">
+                        <img src="comida 1.PNG" alt="Interior del restaurante">
+                    </div>
+                    <div class="gallery-item-slide">
+                        <img src="comida 2.PNG" alt="Plato principal">
+                    </div>
+                    <div class="gallery-item-slide">
+                        <img src="comida 3.PNG" alt="Plato de pasta">
+                    </div>
+                    <div class="gallery-item-slide">
+                        <img src="comida.PNG" alt="Plato de carne">
+                    </div>
+                    <div class="gallery-item-slide">
+                        <img src="fuera 1.PNG" alt="Postre">
+                    </div>
+                    <div class="gallery-item-slide">
+                        <img src="fuera.PNG" alt="Chef preparando plato">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Modal para galería -->
     <div id="galleryModal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="modalImage">
     </div>
-
     <!-- Contacto -->
     <section id="contacto" class="contact">
         <div class="container">
@@ -1218,7 +1131,6 @@
             </div>
         </div>
     </section>
-
     <!-- Redes Sociales -->
     <section class="social">
         <div class="container">
@@ -1235,7 +1147,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1248,28 +1159,23 @@
             </div>
         </div>
     </footer>
-
     <!-- Botón de llamada flotante -->
     <a href="tel:877058782" class="floating-call">
         <i class="fas fa-phone"></i>
     </a>
-
     <script>
         // Menú hamburguesa
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-
         // Cerrar menú al hacer clic en un enlace (en móviles)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
-
         // Efecto de scroll en el header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
@@ -1281,21 +1187,17 @@
                 header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
             }
         });
-
         // Animación de aparición al hacer scroll
         const fadeElements = document.querySelectorAll('.fade-in');
-
         const fadeInOnScroll = () => {
             fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
-                
                 if (elementTop < window.innerHeight - elementVisible) {
                     element.classList.add('visible');
                 }
             });
         };
-
         window.addEventListener('scroll', fadeInOnScroll);
         // Ejecutar una vez al cargar la página
         fadeInOnScroll();
@@ -1303,7 +1205,6 @@
         // Manejo del formulario de reservas
         document.getElementById('reservationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             // Validación de campos
             let isValid = true;
             const name = document.getElementById('name');
@@ -1312,7 +1213,6 @@
             const date = document.getElementById('date');
             const time = document.getElementById('time');
             const guests = document.getElementById('guests');
-            
             // Validar nombre
             if (name.value.trim() === '') {
                 document.getElementById('nameError').style.display = 'block';
@@ -1322,7 +1222,6 @@
                 document.getElementById('nameError').style.display = 'none';
                 name.classList.remove('error');
             }
-            
             // Validar email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email.value)) {
@@ -1333,7 +1232,6 @@
                 document.getElementById('emailError').style.display = 'none';
                 email.classList.remove('error');
             }
-            
             // Validar teléfono
             const phoneRegex = /^[0-9\s\-\(\)\.]+$/;
             if (phone.value.trim() === '' || !phoneRegex.test(phone.value)) {
@@ -1344,7 +1242,6 @@
                 document.getElementById('phoneError').style.display = 'none';
                 phone.classList.remove('error');
             }
-            
             // Validar fecha
             if (date.value === '') {
                 document.getElementById('dateError').style.display = 'block';
@@ -1354,7 +1251,6 @@
                 document.getElementById('dateError').style.display = 'none';
                 date.classList.remove('error');
             }
-            
             // Validar hora
             if (time.value === '') {
                 document.getElementById('timeError').style.display = 'block';
@@ -1364,7 +1260,6 @@
                 document.getElementById('timeError').style.display = 'none';
                 time.classList.remove('error');
             }
-            
             // Validar comensales
             if (guests.value === '' || guests.value < 1 || guests.value > 20) {
                 document.getElementById('guestsError').style.display = 'block';
@@ -1374,12 +1269,10 @@
                 document.getElementById('guestsError').style.display = 'none';
                 guests.classList.remove('error');
             }
-            
             // Si todo es válido, mostrar mensaje de confirmación
             if (isValid) {
                 document.getElementById('confirmationMessage').style.display = 'block';
                 this.reset();
-                
                 // Ocultar mensaje después de 5 segundos
                 setTimeout(() => {
                     document.getElementById('confirmationMessage').style.display = 'none';
@@ -1387,181 +1280,154 @@
             }
         });
 
+        // Menú desplegable para categorías de carta (dentro de cada slide del carrusel)
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.category-icon');
+                content.classList.toggle('open');
+                icon.classList.toggle('rotate');
+            });
+        });
+
+        // Carrusel de Menú
+        const menuCarousel = document.getElementById('menuCarousel');
+        const menuSlides = document.querySelectorAll('.menu-category-slide');
+        const menuPrevBtn = document.getElementById('menuPrevBtn');
+        const menuNextBtn = document.getElementById('menuNextBtn');
+        let currentMenuIndex = 0;
+
+        function updateMenuCarousel() {
+            menuCarousel.style.transform = `translateX(-${currentMenuIndex * 100}%)`;
+            menuPrevBtn.disabled = currentMenuIndex === 0;
+            menuNextBtn.disabled = currentMenuIndex === menuSlides.length - 1;
+        }
+
+        menuNextBtn.addEventListener('click', () => {
+            if (currentMenuIndex < menuSlides.length - 1) {
+                currentMenuIndex++;
+                updateMenuCarousel();
+            }
+        });
+
+        menuPrevBtn.addEventListener('click', () => {
+            if (currentMenuIndex > 0) {
+                currentMenuIndex--;
+                updateMenuCarousel();
+            }
+        });
+
+        updateMenuCarousel(); // Inicializar
+
+
+        // Carrusel de Horario
+        const hoursCarousel = document.getElementById('hoursCarousel');
+        const hoursPrevBtn = document.getElementById('hoursPrevBtn');
+        const hoursNextBtn = document.getElementById('hoursNextBtn');
+        let currentDayOffset = 0; // Offset desde el día actual
+
+        const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const hoursData = {
+            'Lunes': '9:00 - 24:00',
+            'Martes': '9:00 - 24:00',
+            'Miércoles': '9:00 - 24:00',
+            'Jueves': '9:00 - 24:00',
+            'Viernes': '9:00 - 24:00',
+            'Sábado': '9:00 - 24:00',
+            'Domingo': '9:00 - 24:00'
+        };
+
+        function updateHoursCarousel(offset) {
+            const today = new Date();
+            const targetDayIndex = (today.getDay() + offset) % 7;
+            const targetDayName = dayNames[targetDayIndex];
+            const targetDayHours = hoursData[targetDayName] || 'Cerrado';
+
+            // Limpiar carrusel
+            hoursCarousel.innerHTML = '';
+
+            // Crear nuevo slide
+            const slide = document.createElement('div');
+            slide.className = 'hours-day-slide';
+            slide.innerHTML = `
+                <div class="day-row-centered">
+                    <div class="day-name">${targetDayName}</div>
+                    <div class="day-hours">${targetDayHours}</div>
+                </div>
+            `;
+            hoursCarousel.appendChild(slide);
+
+            // Actualizar estado de botones
+            const dayIndex = (targetDayIndex + 7) % 7; // Asegurar positivo
+            hoursPrevBtn.disabled = false; // Siempre permitido ir atrás
+            hoursNextBtn.disabled = false; // Siempre permitido ir adelante
+            // Si se quisiera limitar, aquí se podría hacer:
+            // const maxOffset = 6; // Ejemplo: limitar a una semana
+            // hoursNextBtn.disabled = offset >= maxOffset;
+            // hoursPrevBtn.disabled = offset <= -maxOffset;
+        }
+
+        // Inicializar con el día actual
+        const today = new Date();
+        const todayIndex = today.getDay();
+        // El offset inicial es 0 (hoy)
+        updateHoursCarousel(currentDayOffset);
+
+        hoursNextBtn.addEventListener('click', () => {
+            currentDayOffset++;
+            updateHoursCarousel(currentDayOffset);
+        });
+
+        hoursPrevBtn.addEventListener('click', () => {
+            currentDayOffset--;
+            updateHoursCarousel(currentDayOffset);
+        });
+
+
+        // Carrusel de Galería
+        const galleryCarousel = document.getElementById('galleryCarousel');
+        const gallerySlides = document.querySelectorAll('.gallery-item-slide');
+        let currentGalleryIndex = 0;
+        let galleryInterval;
+
+        function updateGalleryCarousel() {
+            galleryCarousel.style.transform = `translateX(-${currentGalleryIndex * 100}%)`;
+        }
+
+        function nextGallerySlide() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % gallerySlides.length;
+            updateGalleryCarousel();
+        }
+
+        // Iniciar el intervalo automático
+        galleryInterval = setInterval(nextGallerySlide, 3000); // 3 segundos
+
+        // Opcional: Detener el carrusel cuando el usuario interactúa
+        // galleryCarousel.addEventListener('mouseenter', () => {
+        //     clearInterval(galleryInterval);
+        // });
+        // galleryCarousel.addEventListener('mouseleave', () => {
+        //     galleryInterval = setInterval(nextGallerySlide, 3000);
+        // });
+
         // Galería modal
         const modal = document.getElementById('galleryModal');
         const modalImg = document.getElementById('modalImage');
         const closeModal = document.querySelector('.close-modal');
-
+        document.querySelectorAll('.gallery-item-slide img').forEach(img => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'block';
+                modalImg.src = img.src;
+            });
+        });
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
         // Cerrar modal al hacer clic fuera de la imagen
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
-        });
-
-        // Carrusel de la carta
-        const menuCarousel = document.querySelector('.menu-categories');
-        const menuCategories = document.querySelectorAll('.category');
-        const menuPrevBtn = document.querySelector('.menu-carousel .prev');
-        const menuNextBtn = document.querySelector('.menu-carousel .next');
-        let menuCurrentIndex = 0;
-
-        menuPrevBtn.addEventListener('click', () => {
-            menuCurrentIndex = (menuCurrentIndex > 0) ? menuCurrentIndex - 1 : menuCategories.length - 1;
-            updateMenuCarousel();
-        });
-
-        menuNextBtn.addEventListener('click', () => {
-            menuCurrentIndex = (menuCurrentIndex < menuCategories.length - 1) ? menuCurrentIndex + 1 : 0;
-            updateMenuCarousel();
-        });
-
-        function updateMenuCarousel() {
-            menuCarousel.style.transform = `translateX(-${menuCurrentIndex * 100}%)`;
-        }
-
-        // Carrusel del horario
-        const hoursContainer = document.querySelector('.hours-container');
-        const hoursPrevBtn = document.querySelector('.hours-carousel .prev');
-        const hoursNextBtn = document.querySelector('.hours-carousel .next');
-        
-        // Datos del horario
-        const schedule = [
-            { day: 'Lunes', time: '9:00 - 24:00' },
-            { day: 'Martes', time: '9:00 - 24:00' },
-            { day: 'Miércoles', time: '9:00 - 24:00' },
-            { day: 'Jueves', time: '9:00 - 24:00' },
-            { day: 'Viernes', time: '9:00 - 24:00' },
-            { day: 'Sábado', time: '9:00 - 24:00' },
-            { day: 'Domingo', time: '9:00 - 24:00' }
-        ];
-
-        // Obtener el día actual (0 = Domingo, 1 = Lunes, ...)
-        const today = new Date().getDay();
-        let hoursCurrentIndex = today === 0 ? 6 : today - 1; // Ajustar para que domingo sea el último
-
-        // Generar slides del horario
-        function generateHoursSlides() {
-            hoursContainer.innerHTML = '';
-            
-            schedule.forEach((dayInfo, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'hours-slide';
-                
-                const isCurrentDay = index === hoursCurrentIndex;
-                
-                const dayRow = document.createElement('div');
-                dayRow.className = 'day-row';
-                if (isCurrentDay) {
-                    dayRow.classList.add('current-day');
-                }
-                
-                dayRow.innerHTML = `
-                    <span class="day">${dayInfo.day}</span>
-                    <span class="time">${dayInfo.time}</span>
-                `;
-                
-                slide.appendChild(dayRow);
-                hoursContainer.appendChild(slide);
-            });
-            
-            updateHoursCarousel();
-        }
-
-        hoursPrevBtn.addEventListener('click', () => {
-            hoursCurrentIndex = (hoursCurrentIndex > 0) ? hoursCurrentIndex - 1 : schedule.length - 1;
-            generateHoursSlides();
-        });
-
-        hoursNextBtn.addEventListener('click', () => {
-            hoursCurrentIndex = (hoursCurrentIndex < schedule.length - 1) ? hoursCurrentIndex + 1 : 0;
-            generateHoursSlides();
-        });
-
-        function updateHoursCarousel() {
-            hoursContainer.style.transform = `translateX(-${hoursCurrentIndex * 100}%)`;
-        }
-
-        // Inicializar horario
-        generateHoursSlides();
-
-        // Carrusel automático de la galería - UNA IMAGEN POR SLIDE
-        const galleryContainer = document.querySelector('.gallery-container');
-        const galleryImages = [
-            'comida 1.PNG',
-            'comida 2.PNG',
-            'comida 3.PNG',
-            'comida.PNG',
-            'fuera 1.PNG',
-            'fuera.PNG'
-        ];
-
-        // Generar slides de la galería - UNA IMAGEN POR SLIDE
-        function generateGallerySlides() {
-            galleryContainer.innerHTML = '';
-            
-            galleryImages.forEach((imageSrc, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'gallery-slide';
-                
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item fade-in';
-                
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = `Imagen ${index + 1} de La Cantonada`;
-                
-                // Hacer la imagen clickable para abrir modal
-                img.addEventListener('click', () => {
-                    modal.style.display = 'block';
-                    modalImg.src = imageSrc;
-                });
-                
-                galleryItem.appendChild(img);
-                slide.appendChild(galleryItem);
-                galleryContainer.appendChild(slide);
-            });
-            
-            updateGalleryCarousel();
-        }
-
-        let galleryCurrentIndex = 0;
-        let galleryInterval;
-
-        function startGalleryCarousel() {
-            galleryInterval = setInterval(() => {
-                galleryCurrentIndex = (galleryCurrentIndex < galleryImages.length - 1) ? 
-                    galleryCurrentIndex + 1 : 0;
-                updateGalleryCarousel();
-            }, 3000);
-        }
-
-        function updateGalleryCarousel() {
-            galleryContainer.style.transform = `translateX(-${galleryCurrentIndex * 100}%)`;
-        }
-
-        // Pausar carrusel al pasar el ratón
-        galleryContainer.addEventListener('mouseenter', () => {
-            clearInterval(galleryInterval);
-        });
-
-        galleryContainer.addEventListener('mouseleave', () => {
-            startGalleryCarousel();
-        });
-
-        // Inicializar galería
-        generateGallerySlides();
-        startGalleryCarousel();
-
-        // Cerrar modal con la tecla Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                modal.style.display = 'none';
-            }
-        });
-
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
         });
     </script>
 </body>
